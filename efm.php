@@ -260,10 +260,6 @@ function ___eb_add_fb_mes_to_site () {
 }
 
 
-//
-add_action( 'wp_footer', '___eb_add_fb_mes_to_site' );
-
-
 
 
 
@@ -289,17 +285,26 @@ function ___echbay_fb_mes_in_admin_menu() {
 	
 }
 
-add_action('admin_menu', '___echbay_fb_mes_in_admin_menu');
 
 
 
 
-
-function ___eb_efm_checked_or_selected ( $val1, $val2, $e = ' selected="selected"' ) {
-	if ( $val1 == $val2 ) {
+function ___eb_efm_checked_or_selected ( $v1, $v2, $e = ' selected="selected"' ) {
+	if ( $v1 == $v2 ) {
 		return $e;
 	}
 	return '';
+}
+
+
+
+
+//
+if ( is_admin() ) {
+	add_action('admin_menu', '___echbay_fb_mes_in_admin_menu');
+}
+else {
+	add_action( 'wp_footer', '___eb_add_fb_mes_to_site' );
 }
 
 
