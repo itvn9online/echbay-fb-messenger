@@ -42,7 +42,7 @@ $___cf_default_efm_options = array(
 	'header_bg' => '#669900',
 	
 	// Header Text
-	'header_text' => '#ffffff',
+	'header_text' => '#FFFFFF',
 	
 	// Position
 	'widget_position' => 'br',
