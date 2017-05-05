@@ -65,16 +65,16 @@
 	height: 320px;
 	margin-bottom: 0;
 }
-#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon1 { display: none; }
-#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon2 { display: block; }
 /* admin */
 .efm-admin-full-exemple,
 .efm-admin-full-exemple span,
 .efm-admin-min-exemple,
+.echbay-fbchat-mobile-title,
 .efm-mobile-full-exemple { display: inline-block; }
 .efm-admin-full-exemple span,
 .efm-mobile-full-exemple { padding: 0 15px; }
-.efm-admin-min-exemple {
+.efm-admin-min-exemple,
+.echbay-fbchat-mobile-title {
 	background: url(images/messenger-icon.svg) top center no-repeat;
 	background-size: auto 90%;
 	height: 40px;
@@ -90,4 +90,24 @@
 	-webkit-box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
 	-moz-box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
 	box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
+}
+/*  */
+.echbay-fbchat-mobile-title {
+	display: none;
+	position: fixed;
+	top: 45%;
+	right: 5px;
+	margin-right: 0;
+}
+.style-for-desktop-min .echbay-fbchat-mobile-title { display: block; }
+.click-show-hide-box-chat { cursor: pointer; }
+.style-for-desktop-min .echbay-fbchat-title,
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-mobile-title,
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon1 { display: none !important; }
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon2,
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-title { display: block !important; }
+
+@media screen and (max-width:768px) {
+.echbay-fbchat-title { display: none; }
+.echbay-fbchat-mobile-title { display: block; }
 }
