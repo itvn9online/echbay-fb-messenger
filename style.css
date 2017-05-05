@@ -1,2 +1,61 @@
 @charset "utf-8";
 /* CSS Document */
+#echbay_fb_ms {
+	font-family: Helvetica, Arial, sans-serif, Gotham, "Helvetica Neue";
+	position: fixed;
+	bottom: 0px;
+	right: 10px;
+	width: 320px;
+	border-radius: 8px 8px 0 0;
+	z-index: 8888;
+	height: auto;
+	overflow: hidden;
+}
+#echbay_fb_ms .echbay-fbchat-title {
+	background-color: #690;
+	font-size: 17px;
+	color: #fff;
+	line-height: 38px;
+	position: relative;
+	cursor: pointer;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 1px 2px;
+	-moz-box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 1px 2px;
+	box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 1px 2px;
+}
+#echbay_fb_ms .echbay-fbchat-title-text { padding: 0 10px; }
+#echbay_fb_ms .echbay-fbchat-icon {
+	position: absolute;
+	top: 0;
+	right: 18px;
+	font-size: 25px;
+}
+#echbay_fb_ms .echbay-fbchat-icon1 {
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+}
+#echbay_fb_ms .echbay-fbchat-icon2 {
+	display: none;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+}
+#echbay_fb_ms .echbay-fbchat-content {
+	background-color: #fff;
+	height: 1px;
+	margin-bottom: -1px;
+	overflow: hidden;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-content {
+	height: 320px;
+	margin-bottom: 0;
+}
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon1 { display: none; }
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon2 { display: block; }

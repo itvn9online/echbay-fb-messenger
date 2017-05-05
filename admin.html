@@ -1,19 +1,3 @@
-<?php
-
-
-
-
-
-//
-if ( $_SERVER ['REQUEST_METHOD'] == 'POST' ) {
-	include __EB_EFM_DIR . 'update.php';
-}
-
-
-
-
-
-?>
 <style type="text/css">
 .efm-color-picker {
 	padding: 0 3px;
@@ -26,7 +10,7 @@ if ( $_SERVER ['REQUEST_METHOD'] == 'POST' ) {
 }
 #widget_width,
 #widget_height {
-	width: 70px!important;
+	width: 70px !important;
 	border: 1px #BDBDBD solid;
 	transition: border-color .3s;
 	-o-transition: border-color .3s;
@@ -39,7 +23,6 @@ if ( $_SERVER ['REQUEST_METHOD'] == 'POST' ) {
 	background: #f0fff0;
 	border-color: #7DC27D;
 }
-/*
 .btn-restore-default {
 	display: inline-block;
 	font-weight: 400;
@@ -68,7 +51,6 @@ if ( $_SERVER ['REQUEST_METHOD'] == 'POST' ) {
 	color: #fff;
 	margin: 0 auto;
 }
-*/
 .efm-exemple-relative { position: relative; }
 .efm-exemple-box {
 	position: absolute;
@@ -83,97 +65,86 @@ if ( $_SERVER ['REQUEST_METHOD'] == 'POST' ) {
 	z-index: 9;
 	color: #999;
 	padding: 10px;
+	display: none;
 }
 </style>
 <div class="efm-exemple-relative">
-	<!--
 	<div class="efm-exemple-box">Exemple box</div>
-	-->
 	<div class="wrap">
 		<h1>Setting Facebook Messenger Box</h1>
 		<p>* Note: the default value has been active if custom value not set.</p>
 		<form name="echbay_config_for_efm" id="echbay_config_for_efm" method="post" action="" class="validate">
+			<input type="hidden" id="_ebnonce" name="_ebnonce" value="{tmp._ebnonce}" />
 			<table class="form-table">
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="fb_link">URL Facebook page/ Profile</label></th>
-					<td><input name="_efm_fb_link" id="fb_link" type="text" value="<?php echo $___cf_efm_options['fb_link']; ?>" placeholder="<?php echo $___cf_default_efm_options['fb_link']; ?>" />
+					<td><input name="_efm_fb_link" id="fb_link" type="text" value="{tmp.fb_link}" placeholder="{aaa.fb_link}" />
 						<p class="description">URL Facebook page or URL your profile.</p></td>
 				</tr>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="widget_title">Header Title</label></th>
-					<td><input name="_efm_widget_title" id="widget_title" type="text" value="<?php echo $___cf_efm_options['widget_title']; ?>" placeholder="<?php echo $___cf_default_efm_options['widget_title']; ?>" /></td>
+					<td><input name="_efm_widget_title" id="widget_title" type="text" value="{tmp.widget_title}" placeholder="{aaa.widget_title}" /></td>
 				</tr>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="header_bg">Header Background</label></th>
-					<td><input type="color" name="_efm_header_bg" id="header_bg" value="<?php echo $___cf_efm_options['header_bg']; ?>" placeholder="<?php echo $___cf_default_efm_options['header_bg']; ?>" class="efm-color-picker" /></td>
+					<td><input type="color" name="_efm_header_bg" id="header_bg" value="{tmp.header_bg}" placeholder="{aaa.header_bg}" class="efm-color-picker" /></td>
 				</tr>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="header_text">Header Text</label></th>
-					<td><input type="color" name="_efm_header_text" id="header_text" value="<?php echo $___cf_efm_options['header_text']; ?>" placeholder="<?php echo $___cf_default_efm_options['header_text']; ?>" class="efm-color-picker" /></td>
+					<td><input type="color" name="_efm_header_text" id="header_text" value="{tmp.header_text}" placeholder="{aaa.header_text}" class="efm-color-picker" /></td>
 				</tr>
 				<tr class="form-field term-slug-wrap">
 					<th scope="row"><label for="widget_width">Widget Width</label></th>
-					<td><input name="_efm_widget_width" id="widget_width" type="text" value="<?php echo $___cf_efm_options['widget_width']; ?>" placeholder="<?php echo $___cf_default_efm_options['widget_width']; ?>" /></td>
+					<td><input name="_efm_widget_width" id="widget_width" type="text" value="{tmp.widget_width}" placeholder="{aaa.widget_width}" /></td>
 				</tr>
 				<tr class="form-field term-slug-wrap">
 					<th scope="row"><label for="widget_height">Widget Height</label></th>
-					<td><input name="_efm_widget_height" id="widget_height" type="text" value="<?php echo $___cf_efm_options['widget_height']; ?>" placeholder="<?php echo $___cf_default_efm_options['widget_height']; ?>" /></td>
+					<td><input name="_efm_widget_height" id="widget_height" type="text" value="{tmp.widget_height}" placeholder="{aaa.widget_height}" /></td>
 				</tr>
 				<tr class="form-field term-parent-wrap">
 					<th scope="row"><label for="widget_position">Position</label></th>
 					<td><select name="_efm_widget_position" id="widget_position" class="postform">
-							<?php
-						$arr_for_Position_widget = array(
-							"tr" => 'Top Right',
-							"tl" => 'Top Left',
-							"cr" => 'Center Right',
-							"cl" => 'Center Left',
-							"br" => 'Bottom Right',
-							"bl" => 'Bottom Left',
-						);
+							
+							{tmp.str_position}
 						
-						foreach ( $arr_for_Position_widget as $k => $v ) {
-							echo '<option value="' . $k . '"' . ___eb_efm_checked_or_selected( $___cf_efm_options['widget_position'], $k ) . '>' . $v . '</option>';
-						}
-						?>
 						</select></td>
 				</tr>
 				<tr class="form-field term-description-wrap">
 					<th scope="row"><label for="round">Desktop widget</label></th>
-					<td><input type="radio" id="round" name="_efm_desktop_theme" value="min" <?php echo ___eb_efm_checked_or_selected( $___cf_efm_options['desktop_theme'], 'min', ' checked="checked"' ); ?>>
-						<input type="radio" id="rectangle" name="_efm_desktop_theme" value="full" <?php echo ___eb_efm_checked_or_selected( $___cf_efm_options['desktop_theme'], 'full', ' checked="checked"' ); ?>>
+					<td><input type="radio" id="round" name="_efm_desktop_theme" value="min" {tmp.min_desktop_widget}>
+						<input type="radio" id="rectangle" name="_efm_desktop_theme" value="full" {tmp.full_desktop_widget}>
 						<p class="description">Select your desktop widget.</p></td>
 				</tr>
 				<tr class="form-field term-description-wrap">
 					<th scope="row"><label for="mobile_round">Mobile widget</label></th>
-					<td><input type="radio" id="mobile_round" name="_efm_mobile_theme" value="min" <?php echo ___eb_efm_checked_or_selected( $___cf_efm_options['mobile_theme'], 'min', ' checked="checked"' ); ?>>
-						<input type="radio" id="mobile_rectangle" name="_efm_mobile_theme" value="full" <?php echo ___eb_efm_checked_or_selected( $___cf_efm_options['mobile_theme'], 'full', ' checked="checked"' ); ?>>
+					<td><input type="radio" id="mobile_round" name="_efm_mobile_theme" value="min" {tmp.min_mobile_widget}>
+						<input type="radio" id="mobile_rectangle" name="_efm_mobile_theme" value="full" {tmp.full_desktop_widget}>
 						<p class="description">Select your mobile widget.</p></td>
 				</tr>
 				<!--
 				<tr class="form-field term-description-wrap">
 					<th scope="row"><label for="show_bubble">Show Bubble</label></th>
-					<td><input type="checkbox" id="show_bubble" name="_efm_show_bubble" value="no" <?php echo ___eb_efm_checked_or_selected( $___cf_efm_options['show_bubble'], 'no', ' checked="checked"' ); ?>></td>
+					<td><input type="checkbox" id="show_bubble" name="_efm_show_bubble" value="no" {tmp.check_show_bubble}></td>
 				</tr>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="bubble_bg_colors">Bubble Colors</label></th>
-					<td><input type="color" name="_efm_bubble_bg_colors" id="bubble_bg_colors" value="<?php echo $___cf_efm_options['bubble_bg_colors']; ?>" placeholder="<?php echo $___cf_default_efm_options['bubble_bg_colors']; ?>" class="efm-color-picker" />
+					<td><input type="color" name="_efm_bubble_bg_colors" id="bubble_bg_colors" value="{tmp.bubble_bg_colors}" placeholder="{aaa.bubble_bg_colors}" class="efm-color-picker" />
 						&nbsp;
-						<input type="color" name="_efm_bubble_colors" id="bubble_colors" value="<?php echo $___cf_efm_options['bubble_colors']; ?>" placeholder="<?php echo $___cf_default_efm_options['bubble_colors']; ?>" class="efm-color-picker" /></td>
+						<input type="color" name="_efm_bubble_colors" id="bubble_colors" value="{tmp.bubble_colors}" placeholder="{aaa.bubble_colors}" class="efm-color-picker" /></td>
 				</tr>
 				<tr class="form-field term-slug-wrap">
 					<th scope="row"><label for="bubble_content">Bubble Content</label></th>
-					<td><input name="_efm_bubble_content" id="bubble_content" type="text" value="<?php echo $___cf_efm_options['bubble_content']; ?>" placeholder="<?php echo $___cf_default_efm_options['bubble_content']; ?>" /></td>
+					<td><input name="_efm_bubble_content" id="bubble_content" type="text" value="{tmp.bubble_content}" placeholder="{aaa.bubble_content}" /></td>
 				</tr>
 				-->
 				<tr class="form-field term-description-wrap">
 					<th scope="row"><label for="custom_style">Description</label></th>
-					<td><textarea name="_efm_custom_style" id="custom_style" rows="5" cols="50" placeholder="<?php echo $___cf_default_efm_options['custom_style']; ?>" class="large-text"><?php echo $___cf_efm_options['custom_style']; ?></textarea>
+					<td><textarea name="_efm_custom_style" id="custom_style" rows="5" cols="50" placeholder="{aaa.custom_style}" class="large-text">{tmp.custom_style}</textarea>
 						<p class="description">The custom style for development.</p></td>
 				</tr>
 			</table>
 			<p class="submit">
-				<input type="submit" name="submit" id="submit" class="button button-primary" value="Update"  />
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="Update" />
 			</p>
 		</form>
 	</div>
