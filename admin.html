@@ -26,31 +26,10 @@
 }
 .btn-restore-default {
 	display: inline-block;
-	font-weight: 400;
-	text-align: center;
-	vertical-align: middle;
-	touch-action: manipulation;
+	text-decoration: underline;
+	color: #00F;
+	margin-left: 15px;
 	cursor: pointer;
-	border: 1px solid transparent;
-	white-space: nowrap;
-	font-size: 13px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-tap-highlight-color: rgba(169,3,41,.5);
-	border-radius: 2px;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,.05);
-	-moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,.05);
-	-webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.05);
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	padding: 4px 12px;
-	background: #888;
-	color: #fff;
-	margin: 0 auto;
 }
 .efm-exemple-relative { position: relative; }
 .efm-exemple-box {
@@ -88,11 +67,13 @@
 				</tr>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="header_bg">Header Background</label></th>
-					<td><input type="color" name="_efm_header_bg" id="header_bg" value="{tmp.header_bg}" placeholder="{aaa.header_bg}" class="efm-color-picker" /></td>
+					<td><input type="color" name="_efm_header_bg" id="header_bg" value="{tmp.header_bg}" placeholder="{aaa.header_bg}" class="efm-color-picker" />
+						<span data-set="header_bg" class="btn-restore-default">Default</span></td>
 				</tr>
 				<tr class="form-field form-required term-name-wrap">
 					<th scope="row"><label for="header_text">Header Text</label></th>
-					<td><input type="color" name="_efm_header_text" id="header_text" value="{tmp.header_text}" placeholder="{aaa.header_text}" class="efm-color-picker" /></td>
+					<td><input type="color" name="_efm_header_text" id="header_text" value="{tmp.header_text}" placeholder="{aaa.header_text}" class="efm-color-picker" />
+						<span data-set="header_text" class="btn-restore-default">Default</span></td>
 				</tr>
 				<tr class="form-field term-slug-wrap">
 					<th scope="row"><label for="widget_width">Widget Width</label></th>
@@ -105,11 +86,7 @@
 				<tr class="form-field term-parent-wrap">
 					<th scope="row"><label for="widget_position">Position</label></th>
 					<td><select name="_efm_widget_position" id="widget_position" class="postform">
-							
-							
 							{tmp.str_position}
-						
-						
 						</select></td>
 				</tr>
 				<tr class="form-field term-description-wrap">
@@ -156,3 +133,13 @@
 		</form>
 	</div>
 </div>
+<script type="text/javascript">
+jQuery('.btn-restore-default').click(function () {
+	var a = jQuery(this).attr('data-set') || '';
+//	console.log(a);
+	
+	var b = 'input[id="' + a + '"]';
+	
+	jQuery(b).val( jQuery(b).attr('placeholder') || '' );
+});
+</script>
