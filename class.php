@@ -10,7 +10,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				'widget_width' => '320',
 				
 				// Header Background
-				'header_bg' => '#669900',
+				'header_bg' => '#0084FF',
 				
 				// Header Text
 				'header_text' => '#FFFFFF',
@@ -198,7 +198,11 @@ option_name LIKE '{$pref}%'", OBJECT );
 					'min_mobile_widget' => $this->ck ( $this->custom_setting ['mobile_theme'], 'min', ' checked' ),
 					'full_mobile_widget' => $this->ck ( $this->custom_setting ['mobile_theme'], 'full', ' checked' ),
 					
-					'check_show_bubble' => $this->ck ( $this->custom_setting ['show_bubble'], 'no', ' checked' ) 
+					'check_show_bubble' => $this->ck ( $this->custom_setting ['show_bubble'], 'no', ' checked' ),
+					
+					'efm_plugin_url' => EFM_DF_URL,
+//					'efm_plugin_version' => EFM_DF_VERSION,
+					'efm_plugin_version' => time(),
 			) );
 			
 			$main = $this->template ( $main, $this->default_setting, 'aaa' );

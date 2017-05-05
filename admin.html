@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{tmp.efm_plugin_url}style.css?v={tmp.efm_plugin_version}" type="text/css" />
 <style type="text/css">
 .efm-color-picker {
 	padding: 0 3px;
@@ -105,20 +106,26 @@
 					<th scope="row"><label for="widget_position">Position</label></th>
 					<td><select name="_efm_widget_position" id="widget_position" class="postform">
 							
+							
 							{tmp.str_position}
+						
 						
 						</select></td>
 				</tr>
 				<tr class="form-field term-description-wrap">
-					<th scope="row"><label for="round">Desktop widget</label></th>
+					<th scope="row"><label for="rectangle">Desktop widget</label></th>
 					<td><input type="radio" id="round" name="_efm_desktop_theme" value="min" {tmp.min_desktop_widget}>
+						<label for="round"><span class="efm-admin-min-exemple">&nbsp;</span></label>
 						<input type="radio" id="rectangle" name="_efm_desktop_theme" value="full" {tmp.full_desktop_widget}>
+						<label for="rectangle"><span class="efm-admin-full-exemple" style="background-color:{tmp.header_bg}"><span>{tmp.widget_title}</span></span></label>
 						<p class="description">Select your desktop widget.</p></td>
 				</tr>
 				<tr class="form-field term-description-wrap">
-					<th scope="row"><label for="mobile_round">Mobile widget</label></th>
+					<th scope="row"><label for="mobile_rectangle">Mobile widget</label></th>
 					<td><input type="radio" id="mobile_round" name="_efm_mobile_theme" value="min" {tmp.min_mobile_widget}>
-						<input type="radio" id="mobile_rectangle" name="_efm_mobile_theme" value="full" {tmp.full_desktop_widget}>
+						<label for="mobile_round"><span class="efm-admin-min-exemple">&nbsp;</span></label>
+						<input type="radio" id="mobile_rectangle" name="_efm_mobile_theme" value="full" {tmp.full_mobile_widget}>
+						<label for="mobile_rectangle"><span class="efm-mobile-full-exemple" style="background-color:{tmp.header_bg}"><span>Chat</span></span></label>
 						<p class="description">Select your mobile widget.</p></td>
 				</tr>
 				<!--
