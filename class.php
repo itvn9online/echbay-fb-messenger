@@ -54,7 +54,10 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				'bubble_colors' => '#FFFFFF',
 				
 				// Bubble Content
-				'bubble_content' => 'Chat live with an agent now!' 
+				'bubble_content' => 'Chat live with an agent now!',
+				
+				// HTML form -> default using facebook messenger
+				'fbchat_content' => 'facebook'
 		);
 		
 		var $custom_setting = array ();
@@ -151,6 +154,11 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 					$v = esc_html( $v );
 				}
 				$this->custom_setting [$k] = $v;
+			}
+			
+			// set HTML form
+			if ( $this->custom_setting['fb_link'] == '' ) {
+//				$this->custom_setting['fbchat_content'] = 'quick_contact';
 			}
 			
 //			print_r( $this->custom_setting ); exit();
@@ -281,6 +289,16 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			
 			$main = file_get_contents ( EFM_DF_DIR . 'guest.html', 1 );
 			
+			
+			// get html form
+			$form = file_get_contents ( EFM_DF_DIR . $this->custom_setting['fbchat_content'] . '.html', 1 );
+			
+			$main = $this->template ( $main, array (
+					'html_fbchat_content' => $form,
+			) );
+			
+			
+			// another value
 			$main = $this->template ( $main, $this->custom_setting + array (
 					'efm_custom_css' => '<style type="text/css">' . $efm_custom_css . '</style>',
 					'efm_plugin_url' => $this->efm_url,
