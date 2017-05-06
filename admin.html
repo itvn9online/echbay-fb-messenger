@@ -47,6 +47,18 @@
 	padding: 10px;
 	display: none;
 }
+.option-time-out {
+	padding-left: 25px;
+	font-size: 12px;
+	display: none;
+}
+.selected-time-show { width: 70px !important; }
+.set-time-out label {
+	display: inline-block;
+	width: 110px;
+	font-weight: bold;
+	color: #666;
+}
 </style>
 <div class="efm-exemple-relative">
 	<div class="efm-exemple-box">Exemple box</div>
@@ -88,7 +100,17 @@
 				<tr class="form-field term-parent-wrap">
 					<th scope="row"><label for="widget_position">Position</label></th>
 					<td><select name="_efm_widget_position" id="widget_position" class="postform">
+							
+							
+							
+							
+							
 							{tmp.str_position}
+						
+						
+						
+						
+						
 						</select></td>
 				</tr>
 				<tr class="form-field term-description-wrap">
@@ -128,9 +150,72 @@
 					<td><textarea name="_efm_custom_style" id="custom_style" rows="5" cols="50" placeholder="{aaa.custom_style}" class="large-text">{tmp.custom_style}</textarea>
 						<p class="description">The custom style for development.</p></td>
 				</tr>
+				<tr class="form-field term-parent-wrap">
+					<th scope="row"><label for="time_show">Hours</label></th>
+					<td><input type="radio" id="time_show" name="_efm_time_show" value="box" {tmp.box_time_show}>
+						<label for="time_show">Show box chat only</label>
+						<br>
+						<input type="radio" id="select_time_show" name="_efm_time_show" value="time" {tmp.time_time_show}>
+						<label for="select_time_show">Show on selected hours</label>
+						<div class="option-time-out">
+							<ul class="set-time-out">
+								<li>
+									<label for="mon_time_am">Monday</label>
+									<input type="text" name="_efm_mon_time_am" id="mon_time_am" value="{tmp.mon_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_mon_time_pm" value="{aaa.mon_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="tue_time_am">Tuesday</label>
+									<input type="text" name="_efm_tue_time_am" id="tue_time_am" value="{tmp.tue_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_tue_time_pm" value="{aaa.tue_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="wed_time_am">Wednesday</label>
+									<input type="text" name="_efm_wed_time_am" id="wed_time_am" value="{tmp.wed_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_wed_time_pm" value="{aaa.wed_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="thu_time_am">Thursday</label>
+									<input type="text" name="_efm_thu_time_am" id="thu_time_am" value="{tmp.thu_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_thu_time_pm" value="{aaa.thu_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="fri_time_am">Friday</label>
+									<input type="text" name="_efm_fri_time_am" id="fri_time_am" value="{tmp.fri_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_fri_time_pm" value="{aaa.fri_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="sat_time_am">Saturday</label>
+									<input type="text" name="_efm_sat_time_am" id="sat_time_am" value="{tmp.sat_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_sat_time_pm" value="{aaa.sat_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+								<li>
+									<label for="sun_time_am">Sunday</label>
+									<input type="text" name="_efm_sun_time_am" id="sun_time_am" value="{tmp.sun_time_am}" placeholder="Time" maxlength="5" class="selected-time-show">
+									-
+									<input type="text" name="_efm_sun_time_pm" value="{aaa.sun_time_pm}" placeholder="Time" maxlength="5" class="selected-time-show">
+								</li>
+							</ul>
+							<strong>After time out</strong>:<br>
+							<input type="radio" id="time_out_show" name="_efm_time_out" value="show" {tmp.show_time_out}>
+							<label for="time_out_show">Show contact form</label>
+							<br>
+							<input type="radio" id="time_out_hide" name="_efm_time_out" value="hide" {tmp.hide_time_out}>
+							<label for="time_out_hide">Hide plugin</label>
+						</div>
+						<br>
+						<input type="radio" id="contact_time_show" name="_efm_time_show" value="form" {tmp.form_time_show}>
+						<label for="contact_time_show">Show contact form only</label></td>
+				</tr>
 			</table>
 			<p class="submit">
-				<input type="submit" name="submit" id="submit" class="button button-primary" value="Update" />
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes" />
 			</p>
 		</form>
 	</div>
@@ -144,4 +229,13 @@ jQuery('.btn-restore-default').click(function () {
 	
 	jQuery(b).val( jQuery(b).attr('placeholder') || '' );
 });
-</script>
+
+
+jQuery('input[name="_efm_time_show"]').change(function () {
+	if ( jQuery(this).val() == 'time' ) {
+		jQuery('.option-time-out').toggle('slow');
+	} else {
+		jQuery('.option-time-out').toggle('hide');
+	}
+});
+</script> 

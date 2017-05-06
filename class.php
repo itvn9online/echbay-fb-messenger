@@ -56,6 +56,28 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				// Bubble Content
 				'bubble_content' => 'Chat live with an agent now!',
 				
+				// Time for show plugin
+				'time_show' => 'box',
+				
+				// Form after timeout show plugi
+				'time_out' => 'show',
+				
+				// time for days
+				'mon_time_am' => '',
+				'mon_time_am' => '',
+				'tue_time_am' => '',
+				'tue_time_pm' => '',
+				'wed_time_am' => '',
+				'wed_time_pm' => '',
+				'thu_time_am' => '',
+				'thu_time_pm' => '',
+				'fri_time_am' => '',
+				'fri_time_pm' => '',
+				'sat_time_am' => '',
+				'sat_time_pm' => '',
+				'sun_time_am' => '',
+				'sun_time_pm' => '',
+				
 				// HTML form -> default using facebook messenger
 				'fbchat_content' => 'facebook'
 		);
@@ -165,7 +187,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 		}
 		
 		// add checked or selected to input
-		function ck($v1, $v2, $e = ' selected') {
+		function ck($v1, $v2, $e = ' checked') {
 			if ($v1 == $v2) {
 				return $e;
 			}
@@ -241,26 +263,33 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			);
 			$str_position = '';
 			foreach ( $arr_position as $k => $v ) {
-				$str_position .= '<option value="' . $k . '"' . $this->ck ( $this->custom_setting ['widget_position'], $k ) . '>' . $v . '</option>';
+				$str_position .= '<option value="' . $k . '"' . $this->ck ( $this->custom_setting ['widget_position'], $k, ' selected' ) . '>' . $v . '</option>';
 			}
 			
 			$main = file_get_contents ( EFM_DF_DIR . 'admin.html', 1 );
 			
 			$main = $this->template ( $main, $this->custom_setting + array (
-					'_ebnonce' => wp_create_nonce( $this->ebnonce ),
-					
-					'str_position' => $str_position,
-					
-					'min_desktop_widget' => $this->ck ( $this->custom_setting ['desktop_theme'], 'min', ' checked' ),
-					'full_desktop_widget' => $this->ck ( $this->custom_setting ['desktop_theme'], 'full', ' checked' ),
-					
-					'min_mobile_widget' => $this->ck ( $this->custom_setting ['mobile_theme'], 'min', ' checked' ),
-					'full_mobile_widget' => $this->ck ( $this->custom_setting ['mobile_theme'], 'full', ' checked' ),
-					
-					'check_show_bubble' => $this->ck ( $this->custom_setting ['show_bubble'], 'no', ' checked' ),
-					
-					'efm_plugin_url' => $this->efm_url,
-					'efm_plugin_version' => $this->media_version,
+				'_ebnonce' => wp_create_nonce( $this->ebnonce ),
+				
+				'str_position' => $str_position,
+				
+				'min_desktop_widget' => $this->ck ( $this->custom_setting ['desktop_theme'], 'min' ),
+				'full_desktop_widget' => $this->ck ( $this->custom_setting ['desktop_theme'], 'full' ),
+				
+				'min_mobile_widget' => $this->ck ( $this->custom_setting ['mobile_theme'], 'min' ),
+				'full_mobile_widget' => $this->ck ( $this->custom_setting ['mobile_theme'], 'full' ),
+				
+				'check_show_bubble' => $this->ck ( $this->custom_setting ['show_bubble'], 'no' ),
+				
+				'box_time_show' => $this->ck ( $this->custom_setting ['time_show'], 'box' ),
+				'time_time_show' => $this->ck ( $this->custom_setting ['time_show'], 'time' ),
+				'form_time_show' => $this->ck ( $this->custom_setting ['time_show'], 'form' ),
+				
+				'show_time_out' => $this->ck ( $this->custom_setting ['time_out'], 'show' ),
+				'hide_time_out' => $this->ck ( $this->custom_setting ['time_out'], 'hide' ),
+				
+				'efm_plugin_url' => $this->efm_url,
+				'efm_plugin_version' => $this->media_version,
 			) );
 			
 			$main = $this->template ( $main, $this->default_setting, 'aaa' );
