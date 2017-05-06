@@ -10,8 +10,14 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 		* config
 		*/
 		var $default_setting = array (
+				// License -> donate or buy pro version
+				'license' => '',
+				
+				// Hide Powered by ( 0 -> show, 1 -> hide. This is trial version -> default hide )
+				'hide_powered' => 1,
+				
 				// Minimized Width
-				'widget_width' => '320',
+				'widget_width' => 320,
 				
 				// Header Background
 				'header_bg' => '#0084FF',
@@ -91,7 +97,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 //			$this->ebnonce = EFM_DF_ROOT_DIR . EFM_DF_VERSION;
 			$this->ebnonce = $this->root_dir . EFM_DF_VERSION;
 			
-			// Minimized Height
+			// Minimized Height -> same same to width
 			$this->default_setting ['widget_height'] = $this->default_setting ['widget_width'];
 			
 			
