@@ -14,6 +14,12 @@
 	jQuery(".click-show-hide-box-chat").click(function() {
 		jQuery('#echbay_fb_ms').toggleClass('echbay-fbchat-active');
 	});
+	
+	//
+//	jQuery('#echbay_fb_ms.style-for-position-cr .echbay-fbchat-title').css({
+//		right : ( 0 - jQuery('#echbay_fb_ms').width()/ 2 + 20 ) + 'px'
+//	});
+
 }());
 
 

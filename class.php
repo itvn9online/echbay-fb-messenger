@@ -5,6 +5,10 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 	
 	// my class
 	class EFM_Actions_Module {
+		
+		/*
+		* config
+		*/
 		var $default_setting = array (
 				// Minimized Width
 				'widget_width' => '320',
@@ -19,7 +23,8 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				'widget_position' => 'br',
 				
 				// Facebook Link send mesenger to
-				'fb_link' => 'https://www.facebook.com/webgiare.org/',
+//				'fb_link' => 'https://www.facebook.com/webgiare.org/',
+				'fb_link' => '',
 				
 				// Header Title
 				'widget_title' => 'Support Online',
@@ -36,7 +41,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				// Show Bubble
 				'show_bubble' => 'no',
 				
-				// Bubble Backgroun Colors
+				// Bubble Background Colors
 				'bubble_bg_colors' => '#669900',
 				
 				// Bubble Colors
@@ -48,12 +53,51 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 		
 		var $custom_setting = array ();
 		
+		var $media_version = EFM_DF_VERSION;
+		
+		var $prefix_option = '___efm___';
+		
+		var $root_dir = '';
+		
+		var $efm_url = '';
+		
+		var $ebnonce = '';
+		
+		
+		/*
+		* begin
+		*/
 		function load() {
+			
+			/*
+			* test in localhost
+			*/
+			if ( $_SERVER['HTTP_HOST'] == 'localhost:8888' ) {
+				$this->media_version = time();
+			}
+			
+			
+			/*
+			* Check and set config value
+			*/
+			// root dir
+			$this->root_dir = basename ( EFM_DF_DIR );
+			
+			// URL to this plugin
+//			$this->efm_url = plugins_url () . '/' . EFM_DF_ROOT_DIR . '/';
+			$this->efm_url = plugins_url () . '/' . $this->root_dir . '/';
+			
+			// nonce for echbay plugin
+//			$this->ebnonce = EFM_DF_ROOT_DIR . EFM_DF_VERSION;
+			$this->ebnonce = $this->root_dir . EFM_DF_VERSION;
 			
 			// Minimized Height
 			$this->default_setting ['widget_height'] = $this->default_setting ['widget_width'];
 			
-			//
+			
+			/*
+			* Load custom value
+			*/
 			$this->get_op ();
 		}
 		
@@ -62,16 +106,16 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			global $wpdb;
 			
 			//
-			$pref = EFM_DF_PREFIX_OPTIONS;
+			$pref = $this->prefix_option;
 			
 			$sql = $wpdb->get_results ( "SELECT option_name, option_value
-FROM
-`" . $wpdb->options . "`
-WHERE
-option_name LIKE '{$pref}%'", OBJECT );
+			FROM
+				`" . $wpdb->options . "`
+			WHERE
+				option_name LIKE '{$pref}%'", OBJECT );
 			
 			foreach ( $sql as $v ) {
-				$this->custom_setting [str_replace ( EFM_DF_PREFIX_OPTIONS, '', $v->option_name )] = $v->option_value;
+				$this->custom_setting [str_replace ( $this->prefix_option, '', $v->option_name )] = $v->option_value;
 			}
 			// print_r( $this->custom_setting ); exit();
 			
@@ -119,7 +163,7 @@ option_name LIKE '{$pref}%'", OBJECT );
 			if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
 				
 				// check nonce
-				if( ! wp_verify_nonce( $_POST['_ebnonce'], EFM_DF_NONCE) ) {
+				if( ! wp_verify_nonce( $_POST['_ebnonce'], $this->ebnonce ) ) {
 					wp_die('404 not found!');
 				}
 
@@ -128,10 +172,11 @@ option_name LIKE '{$pref}%'", OBJECT );
 				
 				//
 				foreach ( $_POST as $k => $v ) {
+					// only update field by efm
 					if (substr ( $k, 0, 5 ) == '_efm_') {
 						
 						// add prefix key to option key
-						$key = EFM_DF_PREFIX_OPTIONS . substr ( $k, 5 );
+						$key = $this->prefix_option . substr ( $k, 5 );
 						// echo $k . "\n";
 						
 						//
@@ -175,8 +220,8 @@ option_name LIKE '{$pref}%'", OBJECT );
 			$arr_position = array (
 					"tr" => 'Top Right',
 					"tl" => 'Top Left',
-					"cr" => 'Center Right',
-					"cl" => 'Center Left',
+//					"cr" => 'Center Right',
+//					"cl" => 'Center Left',
 					"br" => 'Bottom Right',
 					"bl" => 'Bottom Left' 
 			);
@@ -188,7 +233,7 @@ option_name LIKE '{$pref}%'", OBJECT );
 			$main = file_get_contents ( EFM_DF_DIR . 'admin.html', 1 );
 			
 			$main = $this->template ( $main, $this->custom_setting + array (
-					'_ebnonce' => wp_create_nonce( EFM_DF_NONCE ),
+					'_ebnonce' => wp_create_nonce( $this->ebnonce ),
 					
 					'str_position' => $str_position,
 					
@@ -200,9 +245,8 @@ option_name LIKE '{$pref}%'", OBJECT );
 					
 					'check_show_bubble' => $this->ck ( $this->custom_setting ['show_bubble'], 'no', ' checked' ),
 					
-					'efm_plugin_url' => EFM_DF_URL,
-//					'efm_plugin_version' => EFM_DF_VERSION,
-					'efm_plugin_version' => time(),
+					'efm_plugin_url' => $this->efm_url,
+					'efm_plugin_version' => $this->media_version,
 			) );
 			
 			$main = $this->template ( $main, $this->default_setting, 'aaa' );
@@ -233,9 +277,8 @@ option_name LIKE '{$pref}%'", OBJECT );
 			
 			$main = $this->template ( $main, $this->custom_setting + array (
 					'efm_custom_css' => '<style type="text/css">' . $efm_custom_css . '</style>',
-					'efm_plugin_url' => EFM_DF_URL,
-//					'efm_plugin_version' => EFM_DF_VERSION,
-					'efm_plugin_version' => time(),
+					'efm_plugin_url' => $this->efm_url,
+					'efm_plugin_version' => $this->media_version,
 			) );
 			
 			echo $main;
@@ -252,6 +295,9 @@ option_name LIKE '{$pref}%'", OBJECT );
 	} // end my class
 } // end check class exist
 
+
+
+
 /*
  * Show in admin
  */
@@ -262,12 +308,15 @@ function EFM_show_setting_form_in_admin() {
 	
 	$EFM_func->admin ();
 }
+
 function EFM_add_menu_setting_to_admin_menu() {
 	// only show menu if administrator login
 	if ( current_user_can('manage_options') )  {
 		add_menu_page ( 'Facebook Messenger Setting', 'FB Messenger', 'manage_options', 'efm-custom-setting', 'EFM_show_setting_form_in_admin', NULL, 99 );
 	}
 }
+
+
 
 /*
  * Show in theme

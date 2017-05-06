@@ -106,6 +106,38 @@
 #echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon1 { display: none !important; }
 #echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon2,
 #echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-title { display: block !important; }
+#echbay_fb_ms.style-for-position-tr {
+	bottom: auto;
+	top: 0;
+	border-radius: 0 0 8px 8px;
+}
+#echbay_fb_ms.style-for-position-tl {
+	bottom: auto;
+	right: auto;
+	top: 0;
+	left: 10px;
+	border-radius: 0 0 8px 8px;
+}
+/*
+#echbay_fb_ms.style-for-position-cr .echbay-fbchat-title {
+	bottom: 51%;
+	right: -500px;
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+}
+#echbay_fb_ms.style-for-position-cl { }
+*/
+#echbay_fb_ms.style-for-position-bl {
+	right: auto;
+	left: 10px;
+}
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-mobile-title,
+#echbay_fb_ms.style-for-position-bl .echbay-fbchat-mobile-title {
+	right: auto;
+	left: 5px;
+}
 
 @media screen and (max-width:768px) {
 .echbay-fbchat-title { display: none; }

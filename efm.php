@@ -16,8 +16,8 @@ if (! defined ( 'ABSPATH' )) {
 	exit ();
 }
 
-// define( 'EFM_DF_THIS_FILE', __FILE__ );
-// echo EFM_DF_THIS_FILE . "\n";
+// define( 'EFM_DF_MAIN_FILE', __FILE__ );
+// echo EFM_DF_MAIN_FILE . "\n";
 
 define ( 'EFM_DF_DIR', dirname ( __FILE__ ) . '/' );
 // echo EFM_DF_DIR . "\n";
@@ -28,16 +28,16 @@ define ( 'EFM_DF_VERSION', '1.0.0' );
 // define( 'EFM_DF_TEXT_DOMAIN', 'echbayefm' );
 // echo EFM_DF_TEXT_DOMAIN . "\n";
 
-define ( 'EFM_DF_ROOT_DIR', basename ( EFM_DF_DIR ) );
+//define ( 'EFM_DF_ROOT_DIR', basename ( EFM_DF_DIR ) );
 // echo EFM_DF_ROOT_DIR . "\n";
 
-define ( 'EFM_DF_NONCE', EFM_DF_ROOT_DIR . EFM_DF_VERSION );
+//define ( 'EFM_DF_NONCE', EFM_DF_ROOT_DIR . EFM_DF_VERSION );
 // echo EFM_DF_NONCE . "\n";
 
-define ( 'EFM_DF_URL', plugins_url () . '/' . EFM_DF_ROOT_DIR . '/' );
+//define ( 'EFM_DF_URL', plugins_url () . '/' . EFM_DF_ROOT_DIR . '/' );
 // echo EFM_DF_URL . "\n";
 
-define ( 'EFM_DF_PREFIX_OPTIONS', '___efm___' );
+//define ( 'EFM_DF_PREFIX_OPTIONS', '___efm___' );
 // echo EFM_DF_PREFIX_OPTIONS . "\n";
 
 //
