@@ -4,7 +4,7 @@ Contributors: itvn9online
 
 Donate link: https://paypal.me/itvn9online/5
 
-Tags: echbay, facebook messenger, support box, chat, quick contact, contact form
+Tags: echbay, facebook messenger, support box, quick contact, contact form, chat online, chat software, customer feedback, customer help, customer service
 
 Requires at least: 3.3
 
