@@ -1,0 +1,106 @@
+<!-- quick contact form -->
+<div id="widget_expand" class="widget_body color_theme_default" style="display: block;">
+	<div class="online_heading">
+		<label class="button_chat_offline_text">Chat Hỗ Trợ Trực Tuyến</label>
+		<i class="fa fa-angle-down shrink_icon"></i> </div>
+	<div class="widget_body_inner">
+		<div class="drag-container" id="drag-container" style="display:none"></div>
+		<div class="attach-confirm" id="attach_confirm" style="display: none">
+			<h4>File được gửi</h4>
+			<div class="sbz__list_file"></div>
+			<p class="attach-action">
+				<button class="btn-send-file color_theme_default" id="sbz__send_upload">Gửi</button>
+				<a href="javascript:void(0);" id="sbz__cancel_upload" class="cancel-upload">Hủy</a> </p>
+		</div>
+		<div id="subiz_loading" class="bg-loading" style="display:none"> <i class="img-loading"></i> </div>
+		<div id="survey" style="display: block;">
+			<div class="survey_intro">
+				<p> </p>
+			</div>
+			<div id="department" style="display: block;">
+				<p>
+					<select id="v_department_survey">
+						<option value="">Chọn bộ phận hỗ trợ</option>
+						<option value="Tôi muốn tư vấn mua hàng">Tôi muốn tư vấn mua hàng</option>
+						<option value="Tôi muốn hỗ trợ kỹ thuật">Tôi muốn hỗ trợ kỹ thuật</option>
+					</select>
+				</p>
+				<p id="error_department_survey" style="display:none"> <font class="text_warning">Chọn bộ phận hỗ trợ</font> </p>
+			</div>
+			<div style="display: block;">
+				<p>
+					<input id="v_name_survey" type="text" class="text v_name" placeholder="Mời bạn nhập Tên" maxlength="100">
+				</p>
+				<p id="error_name_survey" style="display:none"> <font class="text_warning">Vui lòng cho biết Tên</font> </p>
+			</div>
+			<div style="display: block;">
+				<p>
+					<input id="v_email_survey" type="text" class="text v_email" placeholder="Mời bạn nhập Email" maxlength="100">
+				</p>
+				<p id="error_email_survey" style="display:none"> <font class="text_warning">Vui lòng cho biết email của bạn</font> </p>
+			</div>
+			<div style="display: block;">
+				<p>
+					<input id="v_phone_survey" type="text" class="text v_phone" placeholder="Mời bạn nhập số điện thoại" maxlength="100">
+				</p>
+				<p id="error_phone_survey" style="display:none"> <font class="text_warning">Vui lòng cho biết điện thoại của bạn</font> </p>
+			</div>
+			<div>
+				<p> <font class="text_note">Đăng nhập bằng</font> <a class="login_facebook" href="#"><i class="fa fa-facebook-square"></i></a> <a class="login_google" href="#"><i class="fa fa-google-plus-square"></i></a> </p>
+			</div>
+			<div style="display: block;">
+				<p>
+					<textarea id="v_question_survey" class="textarea_survey" placeholder="Mời bạn nhập câu hỏi?" rows="2" cols="20"></textarea>
+				</p>
+				<p id="error_question_survey" style="display:none"> <font class="text_warning">Mời bạn nhập câu hỏi</font> </p>
+			</div>
+			<div class="survey_end">
+				<p> <a href="javascript:;" class="btn_start_chat color_theme_default">Bắt đầu trò chuyện</a> </p>
+			</div>
+		</div>
+		<div id="subiz_chat" style="padding: 0px; display: none;">
+			<div class="widget_online_top">
+				<div class="avatar_supporter"> <img src="https://agent-data.subiz.com/upload/images/avatar_default/8617/default_1414062442.jpg" alt=""> </div>
+				<p> <font class="name_supporter">TƯ VẤN MIỄN PHÍ</font> </p>
+				<p> <font class="text_supporter">HỖ TRỢ KHÁCH HÀNG 24/7</font> </p>
+				<p id="bl_rating" style="display: none;"> <a href="javascript:;" id="rate_good" class="rating_button" title="Đánh giá tốt"> <i class="fa fa-thumbs-up rate-good"></i><font>Tốt</font> </a> <a href="javascript:;" id="rate_bad" class="rating_button" title="Đánh giá không tốt"> <i class="fa fa-thumbs-down rate-bad"></i> </a> </p>
+				<div class="logo_company" style="display:none"> <img alt=""> </div>
+			</div>
+			<div class="subiz_conversion">
+				<div class="subiz_conversionin scroll">
+					<div style="padding-top:10px" class="message_welcome">
+						<p> Bạn cần hỗ trợ? Hãy chat ngay với FPTShop! </p>
+					</div>
+				</div>
+				<div class="text_notice" style="display:none">{agent} đang trả lời...</div>
+			</div>
+			<div class="type_message">
+				<p>
+					<textarea placeholder="Nhập nội dung và ấn" rows="2" cols="20" id="textarea_online" class="textarea_online"></textarea>
+				</p>
+				<i class="fa fa-paperclip attach sbz_upload_file" title="Upload file" style="display: inline;"></i>
+				<button id="btnsend" class="btnsend color_theme_default" style="display:none">Gửi</button>
+				<input type="file" name="sbz_input_file" class="sbz_file_hide" multiple id="sbz_file_hide" style="display:none">
+			</div>
+		</div>
+	</div>
+	<div class="widget_body_footer">
+		<div id="twitter" style="display:none"> <a href="javascript:;" target="_blank"><i class="fa fa-twitter-square"></i></a> </div>
+		<div id="facebook" style="display: block;"> <a href="https://www.facebook.com/FPTShopOnline" target="_blank"><i class="fa fa-facebook-square"></i></a> </div>
+		<div class="btnoption"> Cài đặt </div>
+		<div class="btnendchat" id="end_chat_footer" style="display:none">| Kết thúc chat</div>
+		<span class="option_form" style="display: none;"> <i id="close_option" class="fa fa-remove icon_close"></i> <span id="option_default" style="display: inline;"> <span class="option_config_sound">
+		<label class="nameconfig">Âm thanh</label>
+		<i class="fa fa-volume-up icon_sound"> <span class="fa fa-remove" style="display:none"></span> </i> </span> <span class="option_config_line" style="display: none;"> <a href="javascript:;" id="email_transcript">Email transcript</a> <i class="fa fa-envelope"></i> </span> <span class="option_config_line"> <a href="javascript:;" id="edit_contact">Thông tin cá nhân</a> <i class="fa fa-info"></i> </span> <span class="option_config_line" style="display: none;"> <a id="btn_endchat" class="btn_endchat color_theme_default" href="javascript:;">Kết thúc chat</a> </span> </span> <span id="option_contact_details" style="display: none;"> <span class="option_config_line"> <a class="login_facebook"><i class="fa fa-facebook-square"></i> Facebook</a> </span> <span class="option_config_line"> <a class="login_google"><i class="fa fa-google-plus-square"></i> Google +</a> </span> <span class="option_config_line"> <a id="edit_contact_details">Tên và Email</a> </span> </span> <span id="option_contact_form" style="display: none;"> <span class="option_config_line">
+		<label>Sửa thông tin</label>
+		</span> <span class="option_config_line">
+		<input type="text" placeholder="Họ tên" id="v_name_contact" class="text v_name" maxlength="100">
+		</span> <span class="option_config_line">
+		<input type="text" placeholder="Địa chỉ email" id="v_email_contact" class="text v_email" maxlength="100">
+		</span> <span class="option_config_line"> <a href="javascript:;" class="btn_endchat_small color_theme_default" id="edit_successful">Lưu</a> or <a href="javascript:;" id="cancel_contact">Hủy</a> </span> </span> <span id="option_email_transcript" style="display: none;"> <span class="option_config_line">
+		<label>Gửi transcript qua email</label>
+		</span> <span class="option_config_line">
+		<input type="text" placeholder="vistor@example.com" id="v_email_transcript" class="text v_email" maxlength="100">
+		</span> <span class="option_config_line"> <a href="javascript:;" class="btn_endchat_small color_theme_default" id="save_email_transcript">Gửi</a> or <a href="javascript:;" id="cancel_email_transcript">Hủy</a> </span> </span> <span id="option_edit_successful" style="display: none;"> <span class="config_complete"> <strong class="v_name_text"></strong><br>
+		<font class="v_email_text"></font> <a><i id="icon_edit_contact" class="fa fa-pencil icon_edit"></i></a> </span> </span> </span> <span class="endchat_form"> <span class="endchat_form_title"> <span class="endchat_action"> <a href="javascript:;" class="close_enchat_form" id="ec_close">Đóng cửa sổ chat</a>|<a href="javascript:;" id="ec_chat_again">Tiếp tục chat</a> </span> <span class="endchat_label"></span> </span> <span class="endchat_form_button"> <a href="javascript:;" title="" class="btnvote" id="ec_rate_good"> <i class="fa fa-thumbs-up rate-good"></i>Hài lòng </a> <a href="javascript:;" title="" class="btnvote" id="ec_rate_bad"> <i class="fa fa-thumbs-down rate-bad"></i>Chưa hài lòng </a> </span> </span> <a href="https://subiz.com/?utm_source=id8617&amp;utm_medium=widget&amp;utm_campaign=widget_referral" target="_blank"><i class="widget-sprites subiz_logo"></i></a> </div>
+</div>

@@ -4,7 +4,7 @@ Contributors: itvn9online
 
 Donate link: https://paypal.me/itvn9online/5
 
-Tags: facebook messenger, support box, chat
+Tags: echbay, facebook messenger, support box, chat, quick contact, contact form
 
 Requires at least: 3.3
 
@@ -34,7 +34,7 @@ Add Facebook messenger box to your website.
 
 
 
-1. Upload CategoryTinymce folder to the `/wp-content/plugins/` directory
+1. Upload echbay-fb-messenger folder to the `/wp-content/plugins/` directory
 
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
