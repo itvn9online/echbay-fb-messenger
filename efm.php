@@ -5,7 +5,7 @@
  * Plugin URI: https://github.com/itvn9online/echbay-fb-messenger
  * Author: Dao Quoc Dai
  * Author URI: https://www.facebook.com/ech.bay/
- * Version: 1.0.0
+ * Version: 1.0.2
  * Text Domain: echbayefm
  * Domain Path: /languages/
  * License: GPLv2 or later
@@ -16,14 +16,14 @@ if (! defined ( 'ABSPATH' )) {
 	exit ();
 }
 
+define ( 'EFM_DF_VERSION', '1.0.2' );
+// echo EFM_DF_VERSION . "\n";
+
 // define( 'EFM_DF_MAIN_FILE', __FILE__ );
 // echo EFM_DF_MAIN_FILE . "\n";
 
 define ( 'EFM_DF_DIR', dirname ( __FILE__ ) . '/' );
 // echo EFM_DF_DIR . "\n";
-
-define ( 'EFM_DF_VERSION', '1.0.0' );
-// echo EFM_DF_VERSION . "\n";
 
 // define( 'EFM_DF_TEXT_DOMAIN', 'echbayefm' );
 // echo EFM_DF_TEXT_DOMAIN . "\n";

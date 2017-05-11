@@ -103,9 +103,11 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			/*
 			* test in localhost
 			*/
+			/*
 			if ( $_SERVER['HTTP_HOST'] == 'localhost:8888' ) {
 				$this->media_version = time();
 			}
+			*/
 			
 			
 			/*
@@ -113,6 +115,9 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			*/
 			// root dir
 			$this->root_dir = basename ( EFM_DF_DIR );
+			
+			// Get version by time file modife
+			$this->media_version = filemtime( EFM_DF_DIR . 'style.css' );
 			
 			// URL to this plugin
 //			$this->efm_url = plugins_url () . '/' . EFM_DF_ROOT_DIR . '/';
@@ -196,7 +201,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 		
 		// update custom setting
 		function update() {
-			if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
+			if ($_SERVER ['REQUEST_METHOD'] == 'POST' && isset( $_POST['_ebnonce'] )) {
 				
 				// check nonce
 				if( ! wp_verify_nonce( $_POST['_ebnonce'], $this->ebnonce ) ) {
@@ -241,7 +246,10 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				}
 				
 				//
-				die ( '<script type="text/javascript">window.location = window.location.href;</script>' );
+				die ( '<script type="text/javascript">
+// window.location = window.location.href;
+alert("Update done!");
+</script>' );
 				
 				//
 				// wp_redirect( '//' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
@@ -266,6 +274,10 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				$str_position .= '<option value="' . $k . '"' . $this->ck ( $this->custom_setting ['widget_position'], $k, ' selected' ) . '>' . $v . '</option>';
 			}
 			
+			// admin -> used real time version
+			$this->media_version = time();
+			
+			//
 			$main = file_get_contents ( EFM_DF_DIR . 'admin.html', 1 );
 			
 			$main = $this->template ( $main, $this->custom_setting + array (
@@ -302,12 +314,19 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			
 			// style auto create
 			$efm_custom_css = trim ( '
-#echbay_fb_ms {
-	width: ' . $this->custom_setting ['widget_width'] . 'px;
+#echbay_fb_ms,
+#echbay_fb_ms .echbay-fbchat-2title {
+	max-width: ' . $this->custom_setting ['widget_width'] . 'px;
 }
-#echbay_fb_ms .echbay-fbchat-title {
+#echbay_fb_ms .echbay-fbchat-text-title,
+#echbay_fb_ms .echbay-fbchat-mobile-title {
 	background-color: ' . $this->custom_setting ['header_bg'] . ';
 	color: ' . $this->custom_setting ['header_text'] . ';
+}
+#echbay_fb_ms .eb-facebook-square,
+#echbay_fb_ms .eb-chat-square {
+	color: ' . $this->custom_setting ['header_bg'] . ';
+	background-color: ' . $this->custom_setting ['header_text'] . ';
 }
 #echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-content {
 	height: ' . $this->custom_setting ['widget_height'] . 'px;
@@ -329,6 +348,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			
 			// another value
 			$main = $this->template ( $main, $this->custom_setting + array (
+					'bloginfo_name' => get_bloginfo( 'name' ),
 					'efm_custom_css' => '<style type="text/css">' . $efm_custom_css . '</style>',
 					'efm_plugin_url' => $this->efm_url,
 					'efm_plugin_version' => $this->media_version,

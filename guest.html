@@ -1,15 +1,35 @@
+<!-- EchBay Facebook Messenger -->
 <link rel="stylesheet" href="{tmp.efm_plugin_url}style.css?v={tmp.efm_plugin_version}" type="text/css" />
-
 {tmp.efm_custom_css}
 <div id="echbay_fb_ms" class="style-for-desktop-{tmp.desktop_theme} style-for-mobile-{tmp.mobile_theme} style-for-position-{tmp.widget_position}">
-	<div class="echbay-fbchat-title click-show-hide-box-chat">
-		<div class="echbay-fbchat-title-text"> <i class="fa fa-facebook-square"></i> {tmp.widget_title}</div>
-		<div class="echbay-fbchat-icon">
-			<div class="echbay-fbchat-icon1">&rsaquo;</div>
-			<div class="echbay-fbchat-icon2">+</div>
+	<div class="efm-hide-if-mobile">
+		<div class="echbay-fbchat-2title click-show-hide-box-chat">
+			<div class="echbay-fbchat-text-title">
+				<div class="eb-facebook-square"></div>
+				{tmp.widget_title}
+				<div class="echbay-fbchat-icon echbay-fbchat-icon1">&rsaquo;</div>
+			</div>
 		</div>
+		<div class="echbay-fbchat-min-title efm-d-none click-show-hide-box-chat">&nbsp;</div>
 	</div>
-	<div class="echbay-fbchat-mobile-title click-show-hide-box-chat">&nbsp;</div>
-	<div class="echbay-fbchat-content">{tmp.html_fbchat_content}</div>
+	<div class="efm-show-if-mobile efm-d-none">
+		<div class="echbay-fbchat-mobile-title click-show-hide-box-chat">
+			<div class="eb-chat-square"></div>
+			Chat</div>
+		<div class="echbay-fbchat-mobile-min-title click-show-hide-box-chat">&nbsp;</div>
+	</div>
+	<div class="echbay-fbchat-show">
+		<div class="echbay-fbchat-title click-show-hide-box-chat">
+			<div class="echbay-fbchat-text-title">
+				<div class="eb-facebook-square"></div>
+				{tmp.widget_title}
+				<div class="echbay-fbchat-icon">
+					<div class="echbay-fbchat-icon2">+</div>
+				</div>
+			</div>
+		</div>
+		<div class="echbay-fbchat-content">{tmp.html_fbchat_content}</div>
+	</div>
 </div>
-<script type="text/javascript" async src="{tmp.efm_plugin_url}js.js?v={tmp.efm_plugin_version}"></script> 
+<script type="text/javascript" async src="{tmp.efm_plugin_url}js.js?v={tmp.efm_plugin_version}"></script>
+<!-- End EchBay Facebook Messenger -->

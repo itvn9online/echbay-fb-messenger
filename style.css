@@ -1,40 +1,63 @@
 @charset "utf-8";
 /* CSS Document */
+/* global */
+/* #wpadminbar, */
+#echbay_fb_ms .efm-d-none,
+#echbay_fb_ms efm-show-if-mobile { display: none; }
+#echbay_fb_ms .click-show-hide-box-chat { cursor: pointer; }
 #echbay_fb_ms,
-.efm-admin-full-exemple {
-	font-family: Helvetica, Arial, sans-serif, Gotham, "Helvetica Neue";
-	border-radius: 8px 8px 0 0;
-	width: 320px;
-}
-#echbay_fb_ms {
+#echbay_fb_ms .echbay-fbchat-2title {
 	position: fixed;
 	bottom: 0px;
 	right: 10px;
-	z-index: 8888;
-	height: auto;
-	overflow: hidden;
+	width: 90%;
+	max-width: 320px;
+	min-width: 200px;
 }
-#echbay_fb_ms .echbay-fbchat-title,
-.efm-admin-full-exemple,
-.efm-mobile-full-exemple {
-	background-color: #690;
+#echbay_fb_ms {
+	font-family: Helvetica, Arial, sans-serif, Gotham, "Helvetica Neue";
+	z-index: 16000001;
+}
+#echbay_fb_ms.style-for-position-tr {
+	bottom: auto;
+	top: 0;
+	border-radius: 0 0 8px 8px;
+}
+#echbay_fb_ms.style-for-position-tl {
+	bottom: auto;
+	right: auto;
+	top: 0;
+	left: 10px;
+	border-radius: 0 0 8px 8px;
+}
+#echbay_fb_ms.style-for-position-bl {
+	right: auto;
+	left: 10px;
+}
+/* title */
+#echbay_fb_ms .echbay-fbchat-text-title {
+	position: relative;
+	height: 38px;
+	line-height: 38px;
+	overflow: hidden;
 	font-size: 17px;
 	color: #fff;
-}
-#echbay_fb_ms .echbay-fbchat-title,
-.efm-admin-full-exemple {
-	line-height: 38px;
-	position: relative;
-	cursor: pointer;
+	padding: 0 10px 0 32px;
+	border-radius: 8px 8px 0 0;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 	-webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 1px 2px;
 	-moz-box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 1px 2px;
 	box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 1px 2px;
 }
-#echbay_fb_ms .echbay-fbchat-title-text { padding: 0 10px; }
+#echbay_fb_ms.style-for-position-tr .echbay-fbchat-text-title,
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-text-title { border-radius: 0 0 8px 8px; }
+#echbay_fb_ms.style-for-position-tr .echbay-fbchat-show .echbay-fbchat-text-title,
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-show .echbay-fbchat-text-title { border-radius: 8px 8px 0 0; }
+/* icon */
 #echbay_fb_ms .echbay-fbchat-icon {
 	position: absolute;
 	top: 0;
+	bottom: 0;
 	right: 18px;
 	font-size: 25px;
 }
@@ -45,11 +68,20 @@
 	-moz-transform: rotate(-90deg);
 }
 #echbay_fb_ms .echbay-fbchat-icon2 {
-	display: none;
 	transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	-moz-transform: rotate(-45deg);
+}
+/* box chat content */
+#echbay_fb_ms .echbay-fbchat-show {
+	visibility: hidden;
+	height: 1px;
+	overflow: hidden;
+}
+#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-show {
+	visibility: visible;
+	height: auto;
 }
 #echbay_fb_ms .echbay-fbchat-content {
 	background-color: #fff;
@@ -65,81 +97,113 @@
 	height: 320px;
 	margin-bottom: 0;
 }
-/* admin */
-.efm-admin-full-exemple,
-.efm-admin-full-exemple span,
-.efm-admin-min-exemple,
-.echbay-fbchat-mobile-title,
-.efm-mobile-full-exemple { display: inline-block; }
-.efm-admin-full-exemple span,
-.efm-mobile-full-exemple { padding: 0 15px; }
-.efm-admin-min-exemple,
-.echbay-fbchat-mobile-title {
+/* desktop */
+#echbay_fb_ms .echbay-fbchat-2title { }
+#echbay_fb_ms.style-for-position-tr .echbay-fbchat-2title {
+	bottom: auto;
+	top: 0;
+}
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-2title {
+	bottom: auto;
+	right: auto;
+	top: 0;
+	left: 15px;
+}
+#echbay_fb_ms.style-for-position-bl .echbay-fbchat-2title {
+	right: auto;
+	left: 15px;
+}
+/* mobile */
+#echbay_fb_ms .echbay-fbchat-mobile-title {
+	background: #0084ff;
+	height: 37px;
+	line-height: 37px;
+	overflow: hidden;
+	border-radius: 3px;
+	padding: 0 15px 0 32px;
+	font-size: 17px;
+	color: #fff;
+	-webkit-box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
+	box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+}
+#echbay_fb_ms.style-for-position-tr .echbay-fbchat-mobile-title {
+	bottom: auto;
+	top: 15px;
+}
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-mobile-title {
+	bottom: auto;
+	right: auto;
+	top: 15px;
+	left: 15px;
+}
+#echbay_fb_ms.style-for-position-bl .echbay-fbchat-mobile-title {
+	right: auto;
+	left: 15px;
+}
+/* other */
+.echbay-fbchat-min-title,
+.echbay-fbchat-mobile-min-title {
 	background: url(images/messenger-icon.svg) top center no-repeat;
 	background-size: auto 90%;
 	height: 40px;
 	line-height: 40px;
 	width: 40px;
 	border-radius: 50%;
-	margin-right: 25px;
-}
-.efm-mobile-full-exemple {
-	height: 37px;
-	line-height: 37px;
-	border-radius: 3px;
-	-webkit-box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
-	-moz-box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
-	box-shadow: 0 4px 5px -1px rgba(0,0,0,.5);
-}
-/*  */
-.echbay-fbchat-mobile-title {
-	display: none;
 	position: fixed;
 	top: 45%;
 	right: 5px;
-	margin-right: 0;
+	display: none;
 }
-.style-for-desktop-min .echbay-fbchat-mobile-title { display: block; }
-.click-show-hide-box-chat { cursor: pointer; }
-.style-for-desktop-min .echbay-fbchat-title,
-#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-mobile-title,
-#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon1 { display: none !important; }
-#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-icon2,
-#echbay_fb_ms.echbay-fbchat-active .echbay-fbchat-title { display: block !important; }
-#echbay_fb_ms.style-for-position-tr {
-	bottom: auto;
-	top: 0;
-	border-radius: 0 0 8px 8px;
-}
-#echbay_fb_ms.style-for-position-tl {
-	bottom: auto;
-	right: auto;
-	top: 0;
-	left: 10px;
-	border-radius: 0 0 8px 8px;
-}
-/*
-#echbay_fb_ms.style-for-position-cr .echbay-fbchat-title {
-	bottom: 51%;
-	right: -500px;
-	transform: rotate(-90deg);
-	-webkit-transform: rotate(-90deg);
-	-ms-transform: rotate(-90deg);
-	-moz-transform: rotate(-90deg);
-}
-#echbay_fb_ms.style-for-position-cl { }
-*/
-#echbay_fb_ms.style-for-position-bl {
-	right: auto;
-	left: 10px;
-}
-#echbay_fb_ms.style-for-position-tl .echbay-fbchat-mobile-title,
-#echbay_fb_ms.style-for-position-bl .echbay-fbchat-mobile-title {
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-min-title,
+#echbay_fb_ms.style-for-position-bl .echbay-fbchat-min-title,
+#echbay_fb_ms.style-for-position-tl .echbay-fbchat-mobile-min-title,
+#echbay_fb_ms.style-for-position-bl .echbay-fbchat-mobile-min-title {
 	right: auto;
 	left: 5px;
 }
+/* used min version */
+#echbay_fb_ms.style-for-desktop-min .echbay-fbchat-2title { display: none; }
+#echbay_fb_ms.style-for-desktop-min .echbay-fbchat-min-title { display: block; }
 
+/* mobile device */
 @media screen and (max-width:768px) {
-.echbay-fbchat-title { display: none; }
-.echbay-fbchat-mobile-title { display: block; }
+#echbay_fb_ms .efm-hide-if-mobile { display: none; }
+#echbay_fb_ms .efm-show-if-mobile { display: block; }
+#echbay_fb_ms .echbay-fbchat-2title { display: none; }
+#echbay_fb_ms .echbay-fbchat-mobile-title { display: block; }
+#echbay_fb_ms.style-for-mobile-min .echbay-fbchat-mobile-title { display: none; }
+#echbay_fb_ms.style-for-mobile-min .echbay-fbchat-mobile-min-title { display: block; }
 }
+/* box chat active */
+#echbay_fb_ms.echbay-fbchat-active .efm-hide-if-mobile,
+#echbay_fb_ms.echbay-fbchat-active .efm-show-if-mobile { display: none !important; }
+/* icon */
+.eb-chat-square,
+.eb-facebook-square {
+	background: #fff;
+	color: #0084ff;
+	position: absolute;
+	display: inline-block;
+	line-height: 11px;
+	width: 16px;
+	font-style: normal;
+	text-align: center;
+	border-radius: 2px;
+	padding: 5px 0 0 3px;
+	font-weight: bold;
+	top: 27%;
+	left: 10px;
+}
+.eb-facebook-square:before { content: "f"; }
+.eb-chat-square {
+	line-height: 17px;
+	width: 17px;
+	padding: 0;
+	font-size: 11px;
+	border-radius: 50%;
+}
+.eb-chat-square:before { content: "@"; }
