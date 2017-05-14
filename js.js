@@ -1,33 +1,61 @@
 
 
 
-if (typeof jQuery != 'function') {
-	console.log('EchBay Facebook Messenger not start! jQuery function not found.');
+
+
+//
+function EFM_try_javascript_event () {
+	var el = document.getElementById('echbay_fb_ms');
+	console.log(el.className);
+	el.className += el.className ? ' someClass' : 'someClass';
 }
-else {
+
+
+//
+try {
 	
-	//
-	try {
+	if (typeof jQuery != 'function') {
+		console.log('EchBay Facebook Messenger not start! jQuery function not found.');
 		
-		if (jQuery('#fb-root').length == 0) {
-			jQuery('body').append('<div id="fb-root"></div>');
+		//
+		if ( document.getElementById('fb-root').length == 0 ) {
+			document.write( '<div id="fb-root"></div>' );
 		}
 	
 		//
+		/*
+		document.getElementsByClassName('click-show-hide-box-chat').onclick = function () {
+			EFM_try_javascript_event();
+		};
+		*/
+		
+		/*
+		document.getElementsByClassName('click-show-hide-box-chat').addEventListener("click", function() {
+			EFM_try_javascript_event();
+		}, false);
+		*/
+		
+	}
+	else {
+		if (jQuery('#fb-root').length == 0) {
+			jQuery('body').append('<div id="fb-root"></div>');
+		}
+		
 		jQuery(".click-show-hide-box-chat").click(function() {
 			jQuery('#echbay_fb_ms').toggleClass('echbay-fbchat-active');
 		});
 		
 		//
-//			jQuery('#echbay_fb_ms.style-for-position-cr .echbay-fbchat-title').css({
-//				right : ( 0 - jQuery('#echbay_fb_ms').width()/ 2 + 20 ) + 'px'
-//			});
-		
-	} catch ( e ) {
-		console.log( 'stack: ' + (e.stackTrace || e.stack) );
+//		jQuery('#echbay_fb_ms.style-for-position-cr .echbay-fbchat-title').css({
+//			right : ( 0 - jQuery('#echbay_fb_ms').width()/ 2 + 20 ) + 'px'
+//		});
+	
 	}
 	
+} catch ( e ) {
+	console.log( 'stack: ' + (e.stackTrace || e.stack) );
 }
+	
 
 
 
