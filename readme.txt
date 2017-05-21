@@ -8,15 +8,15 @@ Text Domain: echbayefm
 Tags: facebook messenger, facebook comment, facebook share, facebook api, facebook
 Requires at least: 3.3
 Tested up to: 4.7
-Stable tag: 1.0.2
-Version: 1.0.2
+Stable tag: 1.0.4
+Version: 1.0.4
 Contributors: itvn9online
 Donate link: https://paypal.me/itvn9online/5
 
 == Installation ==
 1. Upload `echbay-fb-messenger` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the `Plugins` admin menu in WordPress
-3. Go to menu `FB Messenger` admin menu in WordPress for custom setting.
+3. Go to menu `Webgiare Plugins` menu and `Facebook Messenger` menu in WordPress for custom setting.
 
 == Frequently Asked Questions ==
 
@@ -26,6 +26,12 @@ Donate link: https://paypal.me/itvn9online/5
 3. Box chat setting in admin.
 
 == Changelog ==
+
+= Version 1.0.4 =
+* Update menu global for webgiare plugin
+
+= Version 1.0.3 =
+* update for iPhone, iPad...
 
 = Version 1.0.2 =
 * optimize code content on plugin
@@ -37,6 +43,12 @@ Donate link: https://paypal.me/itvn9online/5
 * None
 
 == Upgrade Notice ==
+
+= Version 1.0.4 =
+* None
+
+= Version 1.0.3 =
+* None
 
 = Version 1.0.2 =
 * None

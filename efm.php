@@ -5,7 +5,7 @@
  * Plugin URI: https://www.facebook.com/webgiare.org/
  * Author: Dao Quoc Dai
  * Author URI: https://www.facebook.com/ech.bay/
- * Version: 1.0.2
+ * Version: 1.0.4
  * Text Domain: echbayefm
  * Domain Path: /languages/
  * License: GPLv2 or later
@@ -16,7 +16,7 @@ if (! defined ( 'ABSPATH' )) {
 	exit ();
 }
 
-define ( 'EFM_DF_VERSION', '1.0.2' );
+define ( 'EFM_DF_VERSION', '1.0.3' );
 // echo EFM_DF_VERSION . "\n";
 
 // define( 'EFM_DF_MAIN_FILE', __FILE__ );
@@ -39,6 +39,25 @@ define ( 'EFM_DF_DIR', dirname ( __FILE__ ) . '/' );
 
 //define ( 'EFM_DF_PREFIX_OPTIONS', '___efm___' );
 // echo EFM_DF_PREFIX_OPTIONS . "\n";
+
+define ( 'EFM_THIS_PLUGIN_NAME', 'EchBay Facebook Messenger' );
+// echo EFM_THIS_PLUGIN_NAME . "\n";
+
+
+
+
+// global echbay plugins menu name
+// check if not exist -> add new
+if ( ! defined ( 'EBP_GLOBAL_PLUGINS_SLUG_NAME' ) ) {
+	define ( 'EBP_GLOBAL_PLUGINS_SLUG_NAME', 'echbay-plugins-menu' );
+	define ( 'EBP_GLOBAL_PLUGINS_MENU_NAME', 'Webgiare Plugins' );
+	
+	define ( 'EFM_ADD_TO_SUB_MENU', false );
+}
+// exist -> add sub-menu
+else {
+	define ( 'EFM_ADD_TO_SUB_MENU', true );
+}
 
 
 
@@ -135,15 +154,15 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 		
 		var $custom_setting = array ();
 		
-		var $media_version = EFM_DF_VERSION;
+		var $eb_plugin_media_version = EFM_DF_VERSION;
 		
-		var $prefix_option = '___efm___';
+		var $eb_plugin_prefix_option = '___efm___';
 		
-		var $root_dir = '';
+		var $eb_plugin_root_dir = '';
 		
-		var $efm_url = '';
+		var $eb_plugin_url = '';
 		
-		var $ebnonce = '';
+		var $eb_plugin_nonce = '';
 		
 		
 		/*
@@ -156,7 +175,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			*/
 			/*
 			if ( $_SERVER['HTTP_HOST'] == 'localhost:8888' ) {
-				$this->media_version = time();
+				$this->eb_plugin_media_version = time();
 			}
 			*/
 			
@@ -165,18 +184,18 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			* Check and set config value
 			*/
 			// root dir
-			$this->root_dir = basename ( EFM_DF_DIR );
+			$this->eb_plugin_root_dir = basename ( EFM_DF_DIR );
 			
 			// Get version by time file modife
-			$this->media_version = filemtime( EFM_DF_DIR . 'style.css' );
+			$this->eb_plugin_media_version = filemtime( EFM_DF_DIR . 'style.css' );
 			
 			// URL to this plugin
-//			$this->efm_url = plugins_url () . '/' . EFM_DF_ROOT_DIR . '/';
-			$this->efm_url = plugins_url () . '/' . $this->root_dir . '/';
+//			$this->eb_plugin_url = plugins_url () . '/' . EFM_DF_ROOT_DIR . '/';
+			$this->eb_plugin_url = plugins_url () . '/' . $this->eb_plugin_root_dir . '/';
 			
 			// nonce for echbay plugin
-//			$this->ebnonce = EFM_DF_ROOT_DIR . EFM_DF_VERSION;
-			$this->ebnonce = $this->root_dir . EFM_DF_VERSION;
+//			$this->eb_plugin_nonce = EFM_DF_ROOT_DIR . EFM_DF_VERSION;
+			$this->eb_plugin_nonce = $this->eb_plugin_root_dir . EFM_DF_VERSION;
 			
 			// Minimized Height -> same same to width
 			$this->default_setting ['widget_height'] = $this->default_setting ['widget_width'];
@@ -193,7 +212,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			global $wpdb;
 			
 			//
-			$pref = $this->prefix_option;
+			$pref = $this->eb_plugin_prefix_option;
 			
 			$sql = $wpdb->get_results ( "SELECT option_name, option_value
 			FROM
@@ -204,7 +223,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 				option_id", OBJECT );
 			
 			foreach ( $sql as $v ) {
-				$this->custom_setting [str_replace ( $this->prefix_option, '', $v->option_name )] = $v->option_value;
+				$this->custom_setting [str_replace ( $this->eb_plugin_prefix_option, '', $v->option_name )] = $v->option_value;
 			}
 			// print_r( $this->custom_setting ); exit();
 			
@@ -257,7 +276,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 			if ($_SERVER ['REQUEST_METHOD'] == 'POST' && isset( $_POST['_ebnonce'] )) {
 				
 				// check nonce
-				if( ! wp_verify_nonce( $_POST['_ebnonce'], $this->ebnonce ) ) {
+				if( ! wp_verify_nonce( $_POST['_ebnonce'], $this->eb_plugin_nonce ) ) {
 					wp_die('404 not found!');
 				}
 
@@ -270,7 +289,7 @@ if (! class_exists ( 'EFM_Actions_Module' )) {
 					if (substr ( $k, 0, 5 ) == '_efm_') {
 						
 						// add prefix key to option key
-						$key = $this->prefix_option . substr ( $k, 5 );
+						$key = $this->eb_plugin_prefix_option . substr ( $k, 5 );
 						// echo $k . "\n";
 						
 						//
@@ -328,13 +347,13 @@ alert("Update done!");
 			}
 			
 			// admin -> used real time version
-			$this->media_version = time();
+			$this->eb_plugin_media_version = time();
 			
 			//
 			$main = file_get_contents ( EFM_DF_DIR . 'admin.html', 1 );
 			
 			$main = $this->template ( $main, $this->custom_setting + array (
-				'_ebnonce' => wp_create_nonce( $this->ebnonce ),
+				'_ebnonce' => wp_create_nonce( $this->eb_plugin_nonce ),
 				
 				'str_position' => $str_position,
 				
@@ -353,8 +372,8 @@ alert("Update done!");
 				'show_time_out' => $this->ck ( $this->custom_setting ['time_out'], 'show' ),
 				'hide_time_out' => $this->ck ( $this->custom_setting ['time_out'], 'hide' ),
 				
-				'efm_plugin_url' => $this->efm_url,
-				'efm_plugin_version' => $this->media_version,
+				'efm_plugin_url' => $this->eb_plugin_url,
+				'efm_plugin_version' => $this->eb_plugin_media_version,
 			) );
 			
 			$main = $this->template ( $main, $this->default_setting, 'aaa' );
@@ -369,7 +388,10 @@ alert("Update done!");
 			$efm_custom_css = trim ( '
 #echbay_fb_ms,
 #echbay_fb_ms .echbay-fbchat-2title {
+	/*
 	max-width: ' . $this->custom_setting ['widget_width'] . 'px;
+	*/
+	width: ' . $this->custom_setting ['widget_width'] . 'px;
 }
 #echbay_fb_ms .echbay-fbchat-text-title,
 #echbay_fb_ms .echbay-fbchat-mobile-title {
@@ -403,8 +425,8 @@ alert("Update done!");
 			$main = $this->template ( $main, $this->custom_setting + array (
 					'bloginfo_name' => get_bloginfo( 'name' ),
 					'efm_custom_css' => '<style type="text/css">' . $efm_custom_css . '</style>',
-					'efm_plugin_url' => $this->efm_url,
-					'efm_plugin_version' => $this->media_version,
+					'efm_plugin_url' => $this->eb_plugin_url,
+					'efm_plugin_version' => $this->eb_plugin_media_version,
 			) );
 			
 			echo $main;
@@ -437,9 +459,20 @@ function EFM_show_setting_form_in_admin() {
 
 function EFM_add_menu_setting_to_admin_menu() {
 	// only show menu if administrator login
-	if ( current_user_can('manage_options') )  {
-		add_menu_page ( 'Facebook Messenger Setting', 'FB Messenger (EB)', 'manage_options', 'efm-custom-setting', 'EFM_show_setting_form_in_admin', NULL, 99 );
+	if ( ! current_user_can('manage_options') )  {
+		return false;
 	}
+	
+	// menu name
+	$a = EFM_THIS_PLUGIN_NAME;
+	
+	// add main menu
+	if ( EFM_ADD_TO_SUB_MENU == false ) {
+		add_menu_page( $a, EBP_GLOBAL_PLUGINS_MENU_NAME, 'manage_options', EBP_GLOBAL_PLUGINS_SLUG_NAME, 'EFM_show_setting_form_in_admin', NULL, 99 );
+	}
+	
+	// add sub-menu
+	add_submenu_page( EBP_GLOBAL_PLUGINS_SLUG_NAME, $a, trim( str_replace( 'EchBay', '', $a ) ), 'manage_options', strtolower( str_replace( ' ', '-', $a ) ), 'EFM_show_setting_form_in_admin' );
 }
 
 

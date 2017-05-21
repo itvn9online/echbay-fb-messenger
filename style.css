@@ -10,8 +10,11 @@
 	position: fixed;
 	bottom: 0px;
 	right: 10px;
+	/*
 	width: 90%;
 	max-width: 320px;
+	*/
+	width: 320px;
 	min-width: 200px;
 }
 #echbay_fb_ms {
@@ -170,7 +173,7 @@
 #echbay_fb_ms.style-for-desktop-min .echbay-fbchat-min-title { display: block; }
 
 /* mobile device */
-@media screen and (max-width:768px) {
+@media screen and (max-width:775px) {
 #echbay_fb_ms .efm-hide-if-mobile { display: none; }
 #echbay_fb_ms .efm-show-if-mobile { display: block; }
 #echbay_fb_ms .echbay-fbchat-2title { display: none; }

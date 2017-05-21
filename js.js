@@ -11,6 +11,12 @@ function EFM_try_javascript_event () {
 }
 
 
+
+//
+var EFM_current_window_scroll_y = 0,
+	EFM_current_navigator_platform = navigator.platform || '';
+
+
 //
 try {
 	
@@ -41,15 +47,47 @@ try {
 			jQuery('body').append('<div id="fb-root"></div>');
 		}
 		
+		//
+		jQuery('#echbay_fb_ms .fb-page').attr({
+			'data-width' : jQuery('#echbay_fb_ms').width() || 320
+		});
+		
+		//
 		jQuery(".click-show-hide-box-chat").click(function() {
+			
+			// lỗi trên thiết bị của iphone, ipad -> chỉnh lại 1 chút
+			if (EFM_current_navigator_platform == 'iPad'
+			|| EFM_current_navigator_platform == 'iPhone'
+			|| EFM_current_navigator_platform == 'iPod'
+			|| EFM_current_navigator_platform == 'Linux armv6l') {
+				
+				var a = jQuery('#echbay_fb_ms').attr('class') || '';
+				
+				// có class -> đang mở -> chuẩn bị đóng
+				if ( a != '' && a.split('echbay-fbchat-active').length > 1 ) {
+					window.scroll( 0, EFM_current_window_scroll_y );
+				}
+				// mở
+				else {
+					// lấy scroll hiện tại của window
+					EFM_current_window_scroll_y = window.scrollY || jQuery(window).scrollTop() || 0;
+					
+					// chuyển scroll về cuối trang
+					window.scroll( 0, jQuery(document).height() );
+				}
+				
+			}
+			
+			// kích hoạt
 			jQuery('#echbay_fb_ms').toggleClass('echbay-fbchat-active');
+			
 		});
 		
 		//
 //		jQuery('#echbay_fb_ms.style-for-position-cr .echbay-fbchat-title').css({
 //			right : ( 0 - jQuery('#echbay_fb_ms').width()/ 2 + 20 ) + 'px'
 //		});
-	
+		
 	}
 	
 } catch ( e ) {
